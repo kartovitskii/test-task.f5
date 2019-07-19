@@ -22,7 +22,9 @@
               </div>
               <div class="timerTypeSection left">Countdown</div>
         </div>
-        <div class="timerText"><span @click="InvTextTimer" :class="[ActiveTextTimer ? 'inputModalDisabled' : 'inputModalActive']">{{hText}}</span><input type="number" v-model="hText" :class="[ActiveTextTimer ? 'inputModalActive' : 'inputModalDisabled']" class="timerTextInput">:<span>{{mText}}</span>:<span>{{sText}}</span></div>
+        <div class="timerText">
+            <span @click="InvTextTimerH" :class="[ActiveTextTimerH ? 'inputModalDisabled' : 'inputModalActive']">{{hText}}</span><input @blur="InvTextTimerH()" id="hour" type="number" v-model="h" :class="[ActiveTextTimerH ? 'inputModalActive' : 'inputModalDisabled']" class="timerTextInput">:<span @click="InvTextTimerM" :class="[ActiveTextTimerM ? 'inputModalDisabled' : 'inputModalActive']">{{mText}}</span><input maxlength="2" @blur="InvTextTimerM()" id="min" v-model="m" :class="[ActiveTextTimerM ? 'inputModalActive' : 'inputModalDisabled']" class="timerTextInput">:<span @click="InvTextTimerS" :class="[ActiveTextTimerS ? 'inputModalDisabled' : 'inputModalActive']">{{sText}}</span><input maxlength="2" @blur="InvTextTimerS()" id="sec" v-model="s" :class="[ActiveTextTimerS ? 'inputModalActive' : 'inputModalDisabled']" class="timerTextInput">
+        </div>
         <div class="btnModalSection">
         <button @click="timerType()" class="buttonModal">{{ buttonname }}</button>
     </div>

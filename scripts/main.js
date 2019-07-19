@@ -12,14 +12,40 @@ var app = new Vue({
       sText: '00',
       typeTimer: false,
       Timer: 0,
-      ActiveTextTimer: false
+      ActiveTextTimerH: false,
+      ActiveTextTimerM: false,
+      ActiveTextTimerS: false
     },
     methods: {
         InvBoolean(){
           this.isActive =! this.isActive
         },
-        InvTextTimer(){
-            this.ActiveTextTimer =! this.ActiveTextTimer
+        InvTextTimerH(){
+            this.ActiveTextTimerH =! this.ActiveTextTimerH;
+            window.setTimeout(function ()
+            {
+                document.getElementById('hour').focus();
+            }, 0);
+            app.h = Number(app.h);
+            app.hText = app.h<10?'0'+app.h:app.h;
+          },
+          InvTextTimerM(){
+            this.ActiveTextTimerM =! this.ActiveTextTimerM
+            window.setTimeout(function ()
+            {
+                document.getElementById('min').focus();
+            }, 0);
+            app.m = Number(app.m);
+            app.mText = app.m<10?'0'+app.m:app.m;
+          },
+          InvTextTimerS(){
+            this.ActiveTextTimerS =! this.ActiveTextTimerS
+            window.setTimeout(function ()
+            {
+                document.getElementById('sec').focus();
+            }, 0);
+            app.s = Number(app.s);
+            app.sText = app.s<10?'0'+app.s:app.s;
           },
         InvSave(){
             if (this.timername=='') {
@@ -47,7 +73,30 @@ var app = new Vue({
                     }
                       }, 1000); 
                 } else {
-                    alert(2);
+                    app.Timer = setInterval(function() {
+                        if (app.s > 0) {
+                            app.s = app.s - 1;
+                            app.sText = app.s<10?'0'+app.s:app.s;
+                    } else if (app.m > 0) {
+                        app.m = app.m - 1;
+                        app.mText = app.m<10?'0'+app.m:app.m;
+                        app.s = 59;
+                        app.sText = app.s<10?'0'+app.s:app.s;
+                    }
+                    else if (app.h > 0) {
+                        app.h = app.h - 1;
+                        app.hText = app.h<10?'0'+app.h:app.h;
+                        app.m = 59;
+                        app.mText = app.m<10?'0'+app.m:app.m;
+                    }
+                    else {
+                        app.buttonname = 'Старт';
+                setTimeout(function() {
+                    clearInterval(app.Timer);
+                  }, 100);
+                    }
+
+                      }, 1000); 
                 }
             } else {
                 app.buttonname = 'Старт';

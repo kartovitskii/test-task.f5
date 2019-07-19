@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Регистрация в мультитаймере</title>
+        <link href="styles/main.css" rel="stylesheet">
+        <link href="styles/normalize.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="timerModal">
+            <p @click="InvBoolean" :class="[isActive ? 'inputModalDisabled' : 'inputModalActive']" id="timerModalName">{{ timername }}</p> <!--<button @click="InvBoolean()" class="buttonModal buttonModalEditname">Появись</button>-->
+           <input id="inputName" v-on:keyup.enter="InvBoolean(); InvSave();" v-model="timername" :class="[isActive ? 'inputModalActive' : 'inputModalDisabled', 'inputModal']">
+           <label :class="[isActive ? 'inputModalActive' : 'inputModalDisabled', 'lblInputModal']" for="inputName">Нажмите «Enter» для сохранения</label>
+         
+           <div class="timerTypeBlock">
+                <div class="timerTypeSection right">Таймер</div>
+               <div class="timerTypeSection">
+           <label class="switch">
+                <input type="checkbox" v-model="typeTimer">
+                <span class="slider round"></span>
+              </label>
+              </div>
+              <div class="timerTypeSection left">Countdown</div>
+        </div>
+        <div class="timerText"><span @click="InvTextTimer" :class="[ActiveTextTimer ? 'inputModalDisabled' : 'inputModalActive']">{{hText}}</span><input type="number" v-model="hText" :class="[ActiveTextTimer ? 'inputModalActive' : 'inputModalDisabled']" class="timerTextInput">:<span>{{mText}}</span>:<span>{{sText}}</span></div>
+        <div class="btnModalSection">
+        <button @click="timerType()" class="buttonModal">{{ buttonname }}</button>
+    </div>
+    </div>
+    
+       <div id="newtimerButton"></div>
+            <script src="scripts/main.js"></script>
+    </body>
+</html>

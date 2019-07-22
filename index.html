@@ -7,6 +7,7 @@
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     <body>
+        <!-- Начало: Модальное окно таймера -->
         <div id="timerModal">
             <p @click="InvBoolean" :class="[isActive ? 'inputModalDisabled' : 'inputModalActive']" id="timerModalName">{{ timername }}</p> <!--<button @click="InvBoolean()" class="buttonModal buttonModalEditname">Появись</button>-->
            <input id="inputName" v-on:keyup.enter="InvBoolean(); InvSave();" v-model="timername" :class="[isActive ? 'inputModalActive' : 'inputModalDisabled', 'inputModal']">
@@ -29,8 +30,14 @@
         <button @click="timerType()" class="buttonModal">{{ buttonname }}</button>
     </div>
     </div>
-    
-       <div id="newtimerButton"></div>
+    <!-- Конец: Модальное окно таймера -->
+            <ul class="timerGrid">
+                    <li><span class="timerGridStyle">12:14:03</span><span class="timerGridName">Пора покушать</span></li>
+                    <li><span class="timerGridStyle">14:03:37</span><span class="timerGridName">Пора покушать</span></li>
+                    <li><span class="timerGridStyle">11:00:24</span><span class="timerGridName">Пора покушать kf kfkfwo</span></li>
+                    <li><span class="timerGridStyle">00:24:16</span><span class="timerGridName">Пора покушать</span></li>
+                  </ul>
+      <!-- <div id="newtimerButton"></div> -->
             <script src="scripts/main.js"></script>
     </body>
 </html>

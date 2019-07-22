@@ -28,6 +28,7 @@ line-height: 130px;
 background: rgb(0, 179, 113); 
 }
 #timerModal {
+  display: none; /* Временно прячем */
 position: absolute;
 width: 470px;
 right: calc(50vw - 275px);
@@ -164,10 +165,12 @@ display: inline;
       text-align: left;
       padding-left: 20px;
   }
-  .timerText {
+  .timerText, .timerGridStyle {
       font-size: 50px;
-      text-align: center;
       margin-top: 40px;
+  }
+  .timerText {
+    text-align: center;
   }
   .timerTextInput {
     width: 56px;
@@ -192,3 +195,44 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 /* Убираем стрелки для тайп намбер и наводим красоту */
+
+.timerGrid li {
+  display: inline-block;
+  list-style-type: none;
+}
+.timerGrid {
+  margin: auto;
+  width: 750px;
+  padding: 0 0 0 30px;
+}
+.timerGrid li:nth-child(even) {
+  float: right;
+}
+.timerGridName {
+  margin: 0 15px;
+  width: 140px;
+  display: inline-block;
+  text-align: left;
+}
+.timerGridStyle {
+  width: 195px;
+}
+@media (max-width: 768px) {
+  .timerGrid li:nth-child(even) {
+    float: none;
+  }
+  .timerGrid {
+    width: 370px;
+  }
+}
+@media (min-width: 960px) {
+  .timerGrid {
+    width: 100vw;
+    text-align: center;
+    padding: 0;
+  }
+  .timerGrid li:nth-child(even) {
+    float: none;
+  }
+  .timerGrid li {margin: 0 20px;}
+}

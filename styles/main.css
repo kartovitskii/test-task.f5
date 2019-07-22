@@ -27,8 +27,8 @@ line-height: 130px;
 #newtimerButton:hover {
 background: rgb(0, 179, 113); 
 }
-#timerModal {
-  display: none; /* Временно прячем */
+.timerModal {
+display: none; /* Временно прячем */
 position: absolute;
 width: 470px;
 right: calc(50vw - 275px);

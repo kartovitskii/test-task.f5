@@ -2,7 +2,7 @@
 <div :id="Timer.ids" :class="[Timer.ModalBo ? 'inputModalDisabled' : 'inputModalActive']">
     <div class="timerModal">
         <p @click="$emit('InvBoolean', Timer.ids)" :class="[Timer.isActive ? 'inputModalDisabled' : 'inputModalActive']" id="timerModalName">{{ Timer.timername }}</p> 
-           <input id="inputName" v-on:keyup.enter="$emit('InvSave', Timer.ids); $emit('InvBoolean', Timer.ids)" v-model="Timer.timername" :class="[Timer.isActive ? 'inputModalActive' : 'inputModalDisabled', 'inputModal']">
+           <input maxlength="25" :id="'ID'+Timer.ids" @blur="$emit('InvSave', Timer.ids); $emit('InvBoolean', Timer.ids)" v-on:keyup.enter="$emit('InvSave', Timer.ids); $emit('InvBoolean', Timer.ids)" v-model="Timer.timername" :class="[Timer.isActive ? 'inputModalActive' : 'inputModalDisabled', 'inputModal']">
            <label :class="[Timer.isActive ? 'inputModalActive' : 'inputModalDisabled', 'lblInputModal']" for="inputName">Нажмите «Enter» для сохранения</label>
         <div class="timerTypeBlock">
                 <div class="timerTypeSection right">Таймер</div>
@@ -15,7 +15,7 @@
               <div class="timerTypeSection left">Countdown</div>
         </div>
         <div class="timerText">
-            <span @click="$emit('InvTextTimerH', Timer.ids)" :class="[Timer.ActiveTextTimerH ? 'inputModalDisabled' : 'inputModalActive']">{{Timer.hText}}</span><input @blur="$emit('InvTextTimerH', Timer.ids)" :id="Timer.ids+'hInp'" type="number" v-model="Timer.h" :class="[Timer.ActiveTextTimerH ? 'inputModalActive' : 'inputModalDisabled']" class="timerTextInput">:<span @click="$emit('InvTextTimerM', Timer.ids)" :class="[Timer.ActiveTextTimerM ? 'inputModalDisabled' : 'inputModalActive']">{{Timer.mText}}</span><input maxlength="2" @blur="$emit('InvTextTimerM', Timer.ids)" :id="Timer.ids+'mInp'" v-model="Timer.m" :class="[Timer.ActiveTextTimerM ? 'inputModalActive' : 'inputModalDisabled']" class="timerTextInput">:<span @click="$emit('InvTextTimerS', Timer.ids)" :class="[Timer.ActiveTextTimerS ? 'inputModalDisabled' : 'inputModalActive']">{{Timer.sText}}</span><input maxlength="2" @blur="$emit('InvTextTimerS', Timer.ids)" :id="Timer.ids+'sInp'" v-model="Timer.s" :class="[Timer.ActiveTextTimerS ? 'inputModalActive' : 'inputModalDisabled']" class="timerTextInput">
+            <span @click="$emit('InvTextTimerH', Timer.ids)" :class="[Timer.ActiveTextTimerH ? 'inputModalDisabled' : 'inputModalActive']">{{Timer.hText}}</span><input @blur="$emit('InvTextTimerH', Timer.ids)" :id="Timer.ids+'hInp'" type="number" v-model="Timer.h" :class="[Timer.ActiveTextTimerH ? 'inputModalActive' : 'inputModalDisabled']" class="timerTextInput">:<span @click="$emit('InvTextTimerM', Timer.ids)" :class="[Timer.ActiveTextTimerM ? 'inputModalDisabled' : 'inputModalActive']">{{Timer.mText}}</span><input maxlength="2" type="number" max="59" @blur="$emit('InvTextTimerM', Timer.ids)" :id="Timer.ids+'mInp'" v-model="Timer.m" :class="[Timer.ActiveTextTimerM ? 'inputModalActive' : 'inputModalDisabled']" class="timerTextInput">:<span @click="$emit('InvTextTimerS', Timer.ids)" :class="[Timer.ActiveTextTimerS ? 'inputModalDisabled' : 'inputModalActive']">{{Timer.sText}}</span><input @blur="$emit('InvTextTimerS', Timer.ids)" :id="Timer.ids+'sInp'" v-model="Timer.s" :class="[Timer.ActiveTextTimerS ? 'inputModalActive' : 'inputModalDisabled', 'timerTextInput']">
         </div>
        <div class="btnModalSection">
          <button class="buttonModal" @click="$emit('StartTimer', Timer.ids)">{{Timer.buttonname}}</button>
@@ -170,6 +170,7 @@ display: inline;
   .timerTextInput {
     width: 56px;
     height: 54px;
+    font-size: 50px;
   }
 /* Убираем стрелки для тайп намбер и наводим красоту */
   input[type="number"]::-webkit-outer-spin-button,

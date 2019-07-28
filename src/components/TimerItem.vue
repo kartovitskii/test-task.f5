@@ -1,7 +1,6 @@
 <template>
-    <li>
-        <span style="cursor: pointer;">{{Timer.hText}}:{{Timer.mText}}:{{Timer.sText}} | {{Timer.timername}}</span>
-        <button @click="$emit('OpenCloseModal', Timer.ids)">Открыть</button>
+    <li class="dragdrop" :id="Timer.ids+'liGrid'" @click="$emit('OpenCloseModal', Timer.ids)">
+        <span :id="Timer.ids+'TGrid'" class="timerGridStyle">{{Timer.hText}}:{{Timer.mText}}:{{Timer.sText}}</span><span :id="Timer.ids+'TGridName'" class="timerGridName">{{Timer.timername}}</span>
     </li>
 </template>
 

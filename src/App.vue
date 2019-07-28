@@ -41,19 +41,20 @@ export default {
   },
   methods: {
     NewTimer() {
-      alert('Новый таймер')
       this.TimersArray.push({ids: this.TimersArray.length, ModalBo: true, timername:  'Новый таймер', buttonname: 'Старт', hText: '00', mText: '00', sText: '00', h: 0, m: 0, s: 0, timer: null, isActive: false, typeTimer: false, ActiveTextTimerH: false, ActiveTextTimerM: false, ActiveTextTimerS: false})
       this.TimersArray[this.TimersArray.length-1].ModalBo =! this.TimersArray[this.TimersArray.length-1].ModalBo
     },
     OpenCloseModal(ids) {
-      alert(ids)
        this.TimersArray[ids].ModalBo =! this.TimersArray[ids].ModalBo
     },
      TimerStop(ids) {
-            this.TimersArray[ids].buttsonname = 'Старт';
+            this.TimersArray[ids].buttonname = 'Старт';
             clearInterval(this.TimersArray[ids].timer);
         },
      InvTextTimerH(ids){
+        if (this.TimersArray[ids].h != 0) {
+            document.getElementById(ids+'liGrid').style.border="none"
+            }
        var idFocus = this.TimersArray[ids].ids+'hInp'
             this.TimersArray[ids].ActiveTextTimerH =! this.TimersArray[ids].ActiveTextTimerH; 
               setTimeout(function ()
@@ -65,6 +66,9 @@ export default {
             this.TimersArray[ids].hText = this.TimersArray[ids].h<10?'0'+this.TimersArray[ids].h:this.TimersArray[ids].h;
           },
           InvTextTimerM(ids){
+            if (this.TimersArray[ids].m != 0) {
+            document.getElementById(ids+'liGrid').style.border="none"
+            }
             var idFocus = this.TimersArray[ids].ids+'mInp'
             this.TimersArray[ids].ActiveTextTimerM =! this.TimersArray[ids].ActiveTextTimerM
            setTimeout(function ()
@@ -74,8 +78,16 @@ export default {
             if (this.TimersArray[ids].ActiveTextTimerM) this.TimerStop(ids);
             this.TimersArray[ids].m = Number(this.TimersArray[ids].m);
             this.TimersArray[ids].mText = this.TimersArray[ids].m<10?'0'+this.TimersArray[ids].m:this.TimersArray[ids].m;
+          if (this.TimersArray[ids].m > 59) {
+             alert("Число не может быть больше 59!")
+             this.TimersArray[ids].m = 0
+             this.TimersArray[ids].mText = '00'
+           }
           },
           InvTextTimerS(ids){
+            if (this.TimersArray[ids].s != 0) {
+            document.getElementById(ids+'liGrid').style.border="none"
+            }
             var idFocus = this.TimersArray[ids].ids+'sInp'
             this.TimersArray[ids].ActiveTextTimerS =! this.TimersArray[ids].ActiveTextTimerS
            setTimeout(function ()
@@ -85,9 +97,18 @@ export default {
             if (this.TimersArray[ids].ActiveTextTimerS) this.TimerStop(ids);
             this.TimersArray[ids].s = Number(this.TimersArray[ids].s);
             this.TimersArray[ids].sText = this.TimersArray[ids].s<10?'0'+this.TimersArray[ids].s:this.TimersArray[ids].s;
+                     if (this.TimersArray[ids].s > 59) {
+             alert("Число не может быть больше 59!")
+             this.TimersArray[ids].s = 0
+             this.TimersArray[ids].sText = '00'
+           }
           },
     InvBoolean(ids) {
        this.TimersArray[ids].isActive =! this.TimersArray[ids].isActive
+        setTimeout(function ()
+            {
+               document.getElementById('ID'+ids).focus();
+            }, 0);
     },
         InvSave(ids){
             if (this.TimersArray[ids].timername=='') {
@@ -96,9 +117,12 @@ export default {
             }
         },
       StartTimer(ids) {
+        document.getElementById(ids+'liGrid').style.border="none"
          if (this.TimersArray[ids].buttonname == 'Старт') {
                 this.TimersArray[ids].buttonname = 'Стоп';
                 if (this.TimersArray[ids].typeTimer==false) {
+                  document.getElementById(ids+'TGrid').style.color="#00FFA3"
+                  document.getElementById(ids+'TGridName').style.color="#00FFA3"
           this.TimersArray[ids].timer = setInterval(() => {
                 if (this.TimersArray[ids].s<59) {
                    this.TimersArray[ids].s++
@@ -117,6 +141,8 @@ export default {
                 }
             }, 1000) 
             } else {
+              document.getElementById(ids+'TGrid').style.color="red"
+              document.getElementById(ids+'TGridName').style.color="red"
                    this.TimersArray[ids].timer = setInterval(() => {
                         if (this.TimersArray[ids].s > 0) {
                             this.TimersArray[ids].s--
@@ -137,12 +163,15 @@ export default {
                     }
                     else {
                         this.TimerStop(ids);
+                         document.getElementById(ids+'liGrid').style.border="1px solid red"
                     }
 
                       }, 1000); 
             } 
             } else {
                this.TimerStop(ids);
+               document.getElementById(ids+'TGrid').style.color="#000"
+               document.getElementById(ids+'TGridName').style.color="#000"
             }
         },
          OpenModal(ids) {

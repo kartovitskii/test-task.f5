@@ -18,10 +18,12 @@
       @TimerStop = "TimerStop"
       @OpenCloseModal = "OpenCloseModal"
       />
+
+      <reg @test="test"/>
   </div>
 </template>
-
 <script>
+import reg from '@/components/Reg.vue' 
 import timer from '@/components/TimerOnGrid' 
 import modal from '@/components/TimerModal'
 
@@ -37,9 +39,21 @@ export default {
     }
   },
   components: {
-    timer, modal
+    timer, modal, reg
   },
   methods: {
+        test() {
+var access_key = 'bee8ff4ffed58aa5c8c13eac7af73852'
+var email_address = 'support@apilayer.com'
+
+fetch('http://apilayer.net/api/check?access_key=' + access_key + '&email=' + email_address)
+  .then(response => response.json())
+  .then(json => {
+    console.log(json.score)
+    console.log(json.smtp_check)
+    console.log(json.format_valid)
+    })
+    },
     NewTimer() {
       this.TimersArray.push({ids: this.TimersArray.length, ModalBo: true, timername:  'Новый таймер', buttonname: 'Старт', hText: '00', mText: '00', sText: '00', h: 0, m: 0, s: 0, timer: null, isActive: false, typeTimer: false, ActiveTextTimerH: false, ActiveTextTimerM: false, ActiveTextTimerS: false})
       this.TimersArray[this.TimersArray.length-1].ModalBo =! this.TimersArray[this.TimersArray.length-1].ModalBo
@@ -183,7 +197,7 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=cyrillic');
-* { font-family: 'Roboto', sans-serif; color: #000;}
+* { font-family: 'Roboto', sans-serif; color: #000; overflow-x: hidden;}
 #app {
  
 }

@@ -1,29 +1,28 @@
 # Тестовое задание для F5
 
-## Project setup
+### Порядок запуска проекта (Тестировалось на Mac)
+
+1. Установка npm + Node.js. Найти можно по этой [ссылке](https://nodejs.org/en/).
+2. Установка Vue CLI
+
 ```
-npm install
+npm install -g @vue/cli
 ```
 
-### Compiles and hot-reloads for development
+3. Распаковка содержимого репозитория в удобное для вас место
+4. Выбираем расположение распакованного репозитория через Терминал, например
+
+```
+cd Desktop/f5/testtask.git
+```
+
+5. Запуск версии для разработки
+
 ```
 npm run serve
 ```
+   Запуск build
 
-### Compiles and minifies for production
 ```
 npm run build
 ```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
